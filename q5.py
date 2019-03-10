@@ -3,10 +3,13 @@ class Solution(object):
         """
         :type s: str
         :rtype: str
+        Use a sliding window to get the longest Palindrome
+        denote the slide window with (start, j)
+        i.e. the starting index and length of the window
         """
         start = 0
-        best = (0, 0) # start, length of palindrome
-        j = 1 # last
+        best = (0, 0) # start, length of palindrome (j)
+        j = 1
         while start+j <= len(s):
             # suspect palindrome
             suspect = s[start:start+j]
