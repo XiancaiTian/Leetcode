@@ -32,3 +32,39 @@ class Solution(object):
         self.max = max(temp, self.max)
         summ = root.val + max(summ_left, summ_right)
         return summ
+
+'''''solution2'''''
+class Solution(object):
+    def maxPathSum(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        
+        '''
+        trick 1: not always pick left or right
+        sometimes need to have left and right
+        
+        trick 2: input may be negative value
+
+        """
+        # if only one node
+        if not root.left and not root.right:
+            return root.val
+        
+        # pick parent only
+        pathsum = [root.val]
+        l = self.recursion(root.left, pathsum)
+        r = self.recursion(root.right, pathsum)
+        
+        # pick first root and a single children
+        pathsum.append(root.val + max(l,r))
+        # pick first root and both children
+        pathsum.append(root.val + l + r )
+        # pick a single children
+        if root.left:
+            pathsum.append(l)
+        if root.right:
+            pathsum.append(r)
+            
+        return max(pathsum)
+    
