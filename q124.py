@@ -45,8 +45,13 @@ class Solution(object):
         sometimes need to have left and right
         
         trick 2: input may be negative value
-
-        """
+        
+        should refer to 
+        https://github.com/XiancaiTian/Leetcode/blob/master/q124.py
+        That solution looks better
+        Basic idea: if left>0, bring it. if right>0 bring it.
+        
+        """ 
         # if only one node
         if not root.left and not root.right:
             return root.val
@@ -68,3 +73,24 @@ class Solution(object):
             
         return max(pathsum)
     
+        
+    def recursion(self, root, pathsum):
+        if not root: 
+            return 0
+        else:
+            l = self.recursion(root.left, pathsum)
+            r = self.recursion(root.right, pathsum)
+            print(root.val, l, r)
+            # pick parent and left or right children
+            value = root.val + max(l,r)
+            # or parenet only
+            value = max(root.val, value)
+            pathsum.append(value)
+            
+            # pick parent and both chidren
+            pathsum.append(l + r + root.val)
+            
+            # pick parent only
+            pathsum.append(root.val)
+            
+            return value
