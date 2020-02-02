@@ -30,7 +30,7 @@ class Solution(object):
 
 class Solution(object):
     '''
-    trick 1: modify q107
+    trick 1: modify q107, q103
     '''
     def rightSideView(self, root):
         """
@@ -43,7 +43,7 @@ class Solution(object):
     
     def recursion(self, root, level, lst):
         if root:
-            # first value in list; any position is fine
+            # only care about first value in each level
             if len(lst)<level+1:
                 lst.append(root.val)
 
