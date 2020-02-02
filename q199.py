@@ -24,3 +24,30 @@ class Solution(object):
             self.ans.insert(loc,root.val)
         self.readtree(root.left, loc+1)
         self.readtree(root.right, loc+1)
+        
+        
+''' solution 2'''
+
+class Solution(object):
+    '''
+    trick 1: modify q107
+    '''
+    def rightSideView(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[int]
+        """
+        lst = []
+        self.recursion(root, 0, lst)
+        return lst
+    
+    def recursion(self, root, level, lst):
+        if root:
+            # first value in list; any position is fine
+            if len(lst)<level+1:
+                lst.append(root.val)
+
+            level += 1
+            self.recursion(root.right, level, lst)
+            self.recursion(root.left, level, lst)
+           
