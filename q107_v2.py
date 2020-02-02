@@ -6,6 +6,9 @@
 #         self.right = None
 
 class Solution(object):
+    '''
+    trick 1: use dfs and reverse the list
+    '''
     def levelOrderBottom(self, root):
         """
         :type root: TreeNode
