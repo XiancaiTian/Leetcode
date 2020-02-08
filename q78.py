@@ -21,3 +21,13 @@ class Solution(object):
             return [[]]
         else:
             return [ele + [self.nums[val-1]] for val in range(k,n+1) for ele in self.pick(val-1, k-1)]
+
+ # the most easy solution
+ class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        ans = [[]]
+        for val in nums:
+            for subset in ans:
+                if val not in subset:
+                    ans.append(subset+[val])
+        return ans
