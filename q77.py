@@ -33,16 +33,3 @@ class Solution:
                 sub = [[i]]
             ans.extend(sub)
         return ans
-            
-        
-        '''
-        ans = []
-        candidates = [i+1 for i in range(n)]
-        ptr = 0
-        while ptr < n:
-            a = candidates[ptr]
-            ptr+=1
-            for b in candidates[ptr:]:
-                ans.append([a,b])
-        return ans
-        '''
