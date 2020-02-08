@@ -1,10 +1,20 @@
-class Solution(object):
-    def subsetsWithDup(self, nums):
+class Solution:
+    def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
         """
         :type nums: List[int]
         :rtype: List[List[int]]
-        """
-        # modify from leetcode q78
+        """  
+        '''
+        # leetcode q78
+        res = [[]]
+        for n in nums:
+            for i in range(len(res)):
+                hold = (res[i] + [n])
+                res.append(hold)
+        return res
+        '''
+        
+        # leetcode q90
         res = [[]]
         for n in nums:
             for i in range(len(res)):
@@ -12,4 +22,3 @@ class Solution(object):
                 if hold not in res:
                     res.append(hold)
         return res
-         
