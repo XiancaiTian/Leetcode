@@ -27,5 +27,5 @@ class Solution(object):
             cur.next, pre, cur = pre, cur, cur.next
         
         p.next.next = cur # dummy = [0, 1, 2, 5]; combine part A+C
-        p.next = pre      # dummy = [0, 1, 2, 3, 4, 5]; combine part A+B+C
+        p.next = pre      # dummy = [0, 1, 4, 3, 2, 5]; combine part A+B+C
         return dummy.next
