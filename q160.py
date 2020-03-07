@@ -6,6 +6,7 @@
 
 # refers to two pointers solution
 # https://leetcode.com/problems/intersection-of-two-linked-lists/solution/
+# https://leetcode.com/problems/intersection-of-two-linked-lists/discuss/49798/Concise-python-code-with-comments
 class Solution(object):
     def getIntersectionNode(self, headA, headB):
         """
