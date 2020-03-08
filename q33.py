@@ -5,8 +5,11 @@ class Solution(object):
         :type target: int
         :rtype: int
         """
-        if not nums:
+        n = len(nums)
+        if n == 0:
             return -1
+        if n == 1:
+            return 0 if nums[0] == target else -1 
         
         pivot = self.find_pivot(nums, target)
         if target <= nums[-1]:
