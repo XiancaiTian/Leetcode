@@ -16,14 +16,21 @@ class Solution(object):
         
         left, right = 1, n
         while left <= right:
-            mid = (left+right) // 2
+            
+            # mid = (left+right) // 2         # may cause overflow
+            mid = left + (right - left) // 2  # better
+            
             print(left, right, mid)
             if not isBadVersion(mid) and isBadVersion(mid+1):
                 return mid+1
+            elif not isBadVersion(mid-1) and isBadVersion(mid):
+                return mid
+            
             elif isBadVersion(mid):
-                right = mid
+                right = mid-1
             else:
-                left = mid
+                left = mid+1
+                
                 
 # LEETCODE Q35      
 class Solution(object):
