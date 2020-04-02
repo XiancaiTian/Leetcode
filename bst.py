@@ -139,4 +139,23 @@ class Solution(object):
             
         return False
 
-
+# LEETCODE 154
+class Solution:
+    def findMin(self, nums):    
+        left, right = 0, len(nums)-1
+        while right > left:
+            mid = left + (right - left) // 2
+            # risk of overflow: pivot = (low + high) // 2
+            # Case 1):
+            if nums[mid] < nums[right]:
+                right = mid 
+                # alternative: high = pivot - 1
+                # too aggressive to move the `high` index,
+                # it won't work for the test case of [3, 1, 3]
+            # Case 2):
+            elif nums[mid] > nums[right]:
+                left = mid + 1
+            # Case 3):
+            else:
+                right -= 1
+        return nums[left]
