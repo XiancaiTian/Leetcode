@@ -119,3 +119,28 @@ class Solution:
             return
         for ele_lower in ele.getList():
             self.dfs(ele_lower, depth+1)
+
+## LEETCODE 364
+# use a dictionary to save the depth and values...
+class Solution:
+    def depthSumInverse(self, nestedList: List[NestedInteger]) -> int:
+        from collections import defaultdict
+        self.ans = defaultdict(list)
+        depth = 0
+        for ele in nestedList:
+            self.dfs(ele, depth)
+        max_depth = max(self.ans.keys()) if self.ans else 0
+        value_sum = 0
+        for k, v in self.ans.items():
+            value_sum += (max_depth+1-k)*sum(v)
+        return value_sum
+    
+    
+    def dfs(self, ele, depth):
+        if ele.getInteger():
+            self.ans[depth].append(ele.getInteger())
+            return
+        for ele_lower in ele.getList():
+            self.dfs(ele_lower, depth+1)
+        
+            
