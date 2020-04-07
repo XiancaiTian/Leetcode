@@ -98,3 +98,24 @@ class Solution:
                     board[i][j] = 'X'
                 if board[i][j] == 'Y':
                     board[i][j] = 'O'
+
+                    
+                    
+## LEETCODE 339
+# concept: dfs
+# need to notice the .getInteger() and .getList()
+class Solution:
+    def depthSum(self, nestedList: List[NestedInteger]) -> int:
+        
+        self.ans = 0
+        depth = 1
+        for ele in nestedList:
+            self.dfs(ele, depth)
+        return self.ans
+    
+    def dfs(self, ele, depth):
+        if ele.getInteger():
+            self.ans += ele.getInteger()*depth
+            return
+        for ele_lower in ele.getList():
+            self.dfs(ele_lower, depth+1)
