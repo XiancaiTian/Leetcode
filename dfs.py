@@ -60,3 +60,41 @@ class Solution:
                     dfs(i, j+1, 1)
                     dfs(i-1, j, 1)
                     dfs(i, j-1, 1)
+
+                    
+## LEETCODE 130
+# concept: start from edges and mark the suitable positions
+# replace the marked positions by 'O'
+# label the rest as 'X'
+
+class Solution:
+    def solve(self, board: List[List[str]]) -> None:
+        """
+        Do not return anything, modify board in-place instead.
+        """
+        if not board: return 0
+        
+        def dfs(i,j):
+            if i<0 or j<0 or i>=m or j>=n or board[i][j]=='X' or board[i][j]=='Y' :
+                return
+            # 'Y' is a placeholder
+            board[i][j] = 'Y' 
+            dfs(i+1, j)
+            dfs(i, j+1)
+            dfs(i-1, j)
+            dfs(i, j-1)
+            
+        m, n = len(board), len(board[0])
+        count = 0
+        for i in range(m):
+            for j in range(n):
+                if board[i][j] == 'O' and (i == 0 or j ==0 or i == m-1 or j ==n-1) :
+                    dfs(i,j)
+
+        # replace O by X, Y by O
+        for i in range(m):
+            for j in range(n):
+                if board[i][j] == 'O':
+                    board[i][j] = 'X'
+                if board[i][j] == 'Y':
+                    board[i][j] = 'O'
