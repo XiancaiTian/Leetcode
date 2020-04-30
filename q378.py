@@ -1,3 +1,27 @@
+class Solution:
+    def kthSmallest(self, matrix: List[List[int]], k: int) -> int:
+        l = matrix[0][0]
+        r = matrix[-1][-1]
+        n_row, n_col = len(matrix), len(matrix[0])
+        
+        def lessOrEqual(k):
+            count = 0
+            for n in range(n_row):
+                row, col = matrix[n_row-n-1], 0
+                while col < n_col and row[col] <= k:
+                    col += 1
+                count += col
+            return count                               
+        
+        while l < r:
+            m = l + (r-l)//2
+            if lessOrEqual(m) >= k:
+                r=m
+            else:
+                l=m+1
+        return l
+    
+
 class Solution(object):
     def kthSmallest(self, matrix, k):
         
