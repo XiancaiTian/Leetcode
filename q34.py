@@ -12,7 +12,6 @@ class Solution:
                     r = mid
                 else:
                     l = mid + 1
-            print(l)
             return l if l < len(nums) and nums[l]==target else -1
         
         def upperBound(l, r):
@@ -24,4 +23,4 @@ class Solution:
                     l = mid + 1
             return l-1 if l-1 < len(nums) and nums[l-1]==target else -1
 
-        return [lowerBound(l, r),upperBound(l, r)]
+        return [lowerBound(l,r), upperBound(l, r)]
