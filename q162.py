@@ -21,3 +21,4 @@ class Solution:
     可以 if nums[mid]>=nums[mid+1]，也可以是 if nums[mid]>nums[mid+1]
     但是要小心以mid+1為index之後，不然可能會超過Array的長度
     因此 在第三行的時候 我多加了 nums = nums + [-float("Inf")]
+    """
