@@ -11,11 +11,11 @@ class Solution:
                 while col < n_col and row[col] <= k:
                     col += 1
                 count += col
-            return count                               
+            return count>= k                           
         
         while l < r:
             m = l + (r-l)//2
-            if lessOrEqual(m) >= k:
+            if lessOrEqual(m):
                 r=m
             else:
                 l=m+1
