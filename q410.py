@@ -6,7 +6,7 @@ class Solution:
             於是仿照isBadVersion function，我們建立了canDivide function...
 
             如果以mid為cut-off切出來的array塊數超過n_split, 就不可以
-            以[7,2,5,10,8]為例，以mid = 7來切，會變成 [7], [2,5], [10], [8] , 有四塊
+            以[7,2,5,10,8]為例，以mid = 12來切，會變成 [7,2], [5], [10], [8] , 有四塊
             ===================================================================
             每當前面的和大於mid, 就代表進入下一個split, 所以 count +=1
             如果count > n_split 代表爆了，mid不夠大，才會切成這麼多塊 ==> return False  
