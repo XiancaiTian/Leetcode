@@ -4,23 +4,23 @@ class Solution:
         r = matrix[-1][-1]
         n_row, n_col = len(matrix), len(matrix[0])
         
-        def lessOrEqual(k):
+        def lessOrEqual(mid,k):
             count = 0
             for n in range(n_row):
                 row, col = matrix[n_row-n-1], 0
-                while col < n_col and row[col] <= k:
+                while col < n_col and row[col] <= mid:
                     col += 1
                 count += col
-            return count>= k                           
+            return count>=k                        
         
         while l < r:
-            m = l + (r-l)//2
-            if lessOrEqual(m):
-                r=m
+            mid = l + (r-l)//2
+            if lessOrEqual(mid,k):
+                r = mid
             else:
-                l=m+1
+                l = mid+1
         return l
-    
+
 
 class Solution(object):
     def kthSmallest(self, matrix, k):
