@@ -7,7 +7,7 @@ class Solution:
             if d == k:
                 ans.append(curr[:])
                 return
-            for i in range(s, n):
+            for i in range(s, len(nums)):
                 curr.append(nums[i])
                 dfs(nums, d+1, k, i+1, curr, ans)
                 curr.pop()
