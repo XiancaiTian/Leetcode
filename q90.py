@@ -23,6 +23,7 @@ class Solution:
                 curr.pop()
                 
         ans = []
+        # 記得要先sort,不然line 18會出問題
         nums.sort()
         for k in range(0, len(nums)+1):
             dfs(nums, 0, k, 0, [], ans)
