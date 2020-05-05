@@ -61,9 +61,34 @@ class Solution:
         candidates.sort()
         dfs(candidates, target, 0, [], ans);       
         return ans
+
+class Solution:
+    def combinationSum3(self, k: int, n: int) -> List[List[int]]:
+        # 延續leetcode 39, 但是固定candidates，要求深度固定為 k, target為n
+        candidates = [i + 1 for i in range(9)]
+    
+        # s: 從第幾個數開始取，取了一個數就不可以取前面的數了
+        # 續記錄深度
+        def dfs(candidates, target, d, k, s, curr, ans):
+            if target == 0 and d == k : 
+                ans.append(curr[:])
+                return
+            
+            for i in range(s, len(candidates)):
+                # 剪枝的動作
+                if candidates[i] > target: 
+                    return
+                
+                curr.append(candidates[i])
+                # 和LEETCODE 39不一樣的地方2, 本來是i, 代表input的數字可以重複使用多次，
+                # 這裡是i+1，不允許使用重複的，除非input裡面本來就有兩個
+                dfs(candidates, target - candidates[i], d+1, k, i+1, curr, ans)
+                curr.pop()
+        ans = []
+        candidates.sort()
+        dfs(candidates, n, 0, k, 0, [], ans);       
+        return ans
  
-
-
 
 
 
