@@ -1,3 +1,24 @@
+class Solution:
+    # 取K個數，nums = [1,2,3,4,..,n], 找combination
+    def combine(self, n: int, k: int) -> List[List[int]]:
+        # d 代表深度，k 代表取幾個數(固定), s 代表從第幾個數字開始取
+        # nums 代表可以選的數字範圍
+        def dfs(nums, d, k, s, curr, ans):
+            if d == k:
+                ans.append(curr[:])
+                return
+            for i in range(s, n):
+                curr.append(nums[i])
+                dfs(nums, d+1, k, i+1, curr, ans)
+                curr.pop()
+                
+        # 這個步驟有點浪費memory, 但是增加可讀性
+        nums = [i + 1 for i in range(n)]
+        ans = []
+        dfs(nums, 0, k, 0, [], ans)
+        return ans
+
+
 class Solution(object):
     
     def combine(self, n, k):
