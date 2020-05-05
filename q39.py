@@ -1,3 +1,40 @@
+class Solution(object):
+    # 套用 Huahua combination template 並修改
+    def combinationSum(self, candidates, target):
+        # s: 從第幾個數開始取，取了一個數就不可以取前面的數了
+        def dfs(candidates, target, s, curr, ans):
+            if target == 0: 
+                # 記得要deepcopy curr
+                ans.append(curr[:])
+                return
+            
+            for i in range(s, len(candidates)):
+                # 剪枝的動作
+                if candidates[i] > target: 
+                    return
+                
+                curr.append(candidates[i])
+                # 原本的template 會讓下一步的s = i+1
+                # 因為這題可以使用重複的數字，所以寫作i
+                dfs(candidates, target - candidates[i], i, curr, ans)
+                curr.pop()
+        
+        ans = []
+        # 要先sort過，避免走到重複的路
+        candidates.sort()
+        # dfs開始: http://zxi.mytechroad.com/blog/searching/leetcode-39-combination-sum/
+        dfs(candidates, target, 0, [], ans);       
+        return ans
+ 
+
+
+
+
+
+
+
+
+
 # source https://leetcode.com/problems/combination-sum-ii/discuss/497792/Python-sol.-by-DFS-and-pruning.-93%2B-With-explanation
 ### LEETCODE 39
 class Solution:
