@@ -1,3 +1,4 @@
+# LC 39
 class Solution(object):
     # 套用 Huahua combination template 並修改
     def combinationSum(self, candidates, target):
@@ -26,8 +27,41 @@ class Solution(object):
         dfs(candidates, target, 0, [], ans);       
         return ans
  
+# LC 40
+class Solution:
+    # 套用 Huahua combination template 並修改成 leetcode 39, 然後再改成 leetcode 40
+    # 39題的input不會有重複的數，但是40有，如果照抄的話就會有重複的答案
+    def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
+        # s: 從第幾個數開始取，取了一個數就不可以取前面的數了
 
+        def dfs(candidates, target, s, curr, ans):
+            if target == 0: 
+                # 記得要deepcopy curr
+                ans.append(curr[:])
+                return
+            
 
+            for i in range(s, len(candidates)):
+                # 剪枝的動作
+                if candidates[i] > target: 
+                    return
+                
+                # 和LEETCODE 39不一樣的地方1
+                if i > s and candidates[i] == candidates[i-1]:
+                    # avoid repetition
+                    continue
+                
+                curr.append(candidates[i])
+                
+                # 和LEETCODE 39不一樣的地方2, 本來是i, 代表input的數字可以重複使用多次，
+                # 這裡是i+1，不允許使用重複的，除非input裡面本來就有兩個
+                dfs(candidates, target - candidates[i], i+1, curr, ans)
+                curr.pop()
+        ans = []
+        candidates.sort()
+        dfs(candidates, target, 0, [], ans);       
+        return ans
+ 
 
 
 
