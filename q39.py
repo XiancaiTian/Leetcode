@@ -62,6 +62,7 @@ class Solution:
         dfs(candidates, target, 0, [], ans);       
         return ans
 
+# LC 216
 class Solution:
     def combinationSum3(self, k: int, n: int) -> List[List[int]]:
         # 延續leetcode 39, 但是固定candidates，要求深度固定為 k, target為n
