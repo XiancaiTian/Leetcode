@@ -22,6 +22,35 @@ class Solution:
         dfs(nums, 0, len(nums), [False]*len(nums), [], ans)
         return ans
 
+# LC 46 另解
+class Solution:
+    # 套用huahua的permutation template
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        
+        def dfs(d):
+            if d == n:
+                ans.append(curr[:])
+                return
+            
+            for i in range(0, len(nums)):
+                if used[i]:
+                    continue
+                
+                used[i] = True
+                curr.append(nums[i])
+                dfs(d+1)
+                curr.pop()
+                used[i] = False
+        
+        curr = []
+        n = len(nums)
+        used = [False]*n
+        curr = []
+        ans = []
+        dfs(0)
+        return ans
+    
+    
 # LC 47
 class Solution:
     def permuteUnique(self, nums: List[int]) -> List[List[int]]:        
