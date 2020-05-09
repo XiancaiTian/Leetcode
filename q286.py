@@ -1,3 +1,49 @@
+## DFS solution
+class Solution:
+    """
+    start from every gate and update the distance to rooms
+    if the new distance is closer than the previous, then overwrite
+    """
+    def wallsAndGates(self, rooms: List[List[int]]) -> None:
+        """
+        Do not return anything, modify rooms in-place instead.
+        """
+        
+        # Edge case
+        if not rooms:
+            return
+        
+        def dfs(i, j, depth):
+            # hit the boundary
+            if i < 0 or i >= n_rows or j < 0 or j >= n_cols:
+                return
+            
+            # hit the wall
+            if rooms[i][j] == -1:
+                return
+            
+            # pruning
+            if rooms[i][j] < depth:
+                return
+                
+            # update the distance
+            rooms[i][j] = min(depth, rooms[i][j])
+            depth += 1
+            dfs(i+1, j, depth)
+            dfs(i, j+1, depth)
+            dfs(i-1, j, depth)
+            dfs(i, j-1, depth)
+            
+        
+        n_rows, n_cols = len(rooms), len(rooms[0])
+        depth = 0
+        for i in range(n_rows):
+            for j in range(n_cols):
+                if rooms[i][j] == 0:
+                    dfs(i, j, depth)
+
+
+
 class Solution:
     def wallsAndGates(self, rooms: List[List[int]]) -> None:
         """
