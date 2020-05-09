@@ -1,29 +1,43 @@
 # DFS solution
-# go over every point
-# if visited: label as '#'
-# utilize rescursion
-class Solution(object):
-    def numIslands(self, grid):
-        if not grid:
+class Solution:
+    """
+    DFS
+    start from a land, and search the 4 directions
+    if be blocked by water or wall: return
+    """
+    def numIslands(self, grid: List[List[str]]) -> int:
+        # Edge case
+        if not grid: 
             return 0
-
+        
+        def dfs(i, j):
+            if i < 0 or i == n_row or j < 0 or j == n_col: 
+                return 
+            
+            elif grid[i][j] == '0': 
+                return 
+            
+             # mark global grid as visited
+            grid[i][j] = '0'
+            
+            # move one step at a time
+            dfs(i+1, j)
+            dfs(i, j+1)
+            dfs(i-1, j)
+            dfs(i, j-1)
+            
+        n_row, n_col = len(grid), len(grid[0])
         count = 0
-        for i in range(len(grid)):
-            for j in range(len(grid[0])):
+        for i in range(n_row):
+            for j in range(n_col):
                 if grid[i][j] == '1':
-                    self.dfs(grid, i, j)
+                    dfs(i,j)
                     count += 1
         return count
-
-    def dfs(self, grid, i, j):
-        if i<0 or j<0 or i>=len(grid) or j>=len(grid[0]) or grid[i][j] != '1':
-            return
-        grid[i][j] = '#'
-        self.dfs(grid, i+1, j)
-        self.dfs(grid, i-1, j)
-        self.dfs(grid, i, j+1)
-        self.dfs(grid, i, j-1)
-        
+    
+    
+    
+    
 # BFS solution
 # utilize iteration
 # have a queue
