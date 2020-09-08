@@ -31,13 +31,9 @@ class TicTacToe:
         if row == n-col-1:
             self.anti_diag += value
 
-        if n in self.row or n in self.col:
+        if n in [self.row[row], self.col[col], self.diag , self.anti_diag]:
             return 1
-        elif -n in self.row or -n in self.col: 
-            return 2
-        elif self.diag == n or self.anti_diag==n: 
-            return 1
-        elif self.diag == -n or self.anti_diag== -n: 
+        elif -n in [self.row[row], self.col[col], self.diag , self.anti_diag]:
             return 2
         else:
             return 0
