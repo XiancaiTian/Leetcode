@@ -1,4 +1,6 @@
 # dictionary approach
+# should be aware of single zero cases
+
 
 class TwoSum:
 
