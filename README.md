@@ -8,5 +8,8 @@ https://docs.google.com/spreadsheets/d/1Iicl2JqH5VQ5zwtNu-XAud2T4NZArvna8_iRnws0
 Categories: https://cspiration.com/leetcodeClassification#10304
 ML cheatsheet https://ml-cheatsheet.readthedocs.io/en/latest/
 
-A
+Anoteher categories
 https://github.com/jeffzh4ng/algorithms-and-data-structures#algorithms
+
+小刀
+https://wdxtub.com/interview/14520609088903.html
