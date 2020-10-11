@@ -14,3 +14,16 @@ class Solution(object):
                 j+=1
         print(nums)
         return j
+
+# alternative two pointer solution
+class Solution:
+def removeDuplicates(self, nums: List[int]) -> int:
+    fast = 0
+    slow = 0
+    while fast < len(nums) -1: 
+        if nums[fast]!= nums[fast+1]:
+            slow += 1
+            nums[slow] = nums[fast+1]
+        fast +=1
+    #print(nums[:slow+1])
+    return slow +1
