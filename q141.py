@@ -21,3 +21,17 @@ class Solution(object):
             if slow.val == fast.val:
                 return True
         return False
+
+# Template (for unknown reason slow==fast comaprison is faster)
+class Solution:
+    def hasCycle(self, head: ListNode) -> bool:
+        fast = head
+        slow = head
+        
+        while fast and fast.next and fast.next.next:
+            fast = fast.next.next
+            slow = slow.next
+            if slow == fast:  # Alternative: if slow.val == fast.val:
+                return True
+            
+        return False
