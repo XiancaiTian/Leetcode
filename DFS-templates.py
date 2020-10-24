@@ -15,25 +15,29 @@ class Solution:
         return False
     
 # Leetcode 112 recursive
-class Solution(object):
-    def hasPathSum(self, root, sum):
-        """
-        :type root: TreeNode
-        :type sum: int
-        :rtype: bool
-        """
-        
+class Solution:
+    def hasPathSum(self, root: TreeNode, sum: int) -> bool:
+        self.target_sum = sum
+        self.ans = False
+        self.pathSum(root, 0)
+        return self.ans
+    
+    def pathSum(self, root, path_sum):
+    
         if root is None:
-            return False
+            return
         
-        # if the current node is a leaf and its value is equal to the sum, we've found a path
-        if root.left is None and root.right is None and root.val == sum:
-            return True
+        path_sum += root.val
         
-        # recursively call to traverse the left and right sub-tree
-        # return true if any of the two recursive call return true
-        return self.hasPathSum( root.left, sum - root.val) \
-                or self.hasPathSum(root.right, sum - root.val)
+        if root.left is None and root.right is None:
+            if path_sum == self.target_sum:
+                self.ans = True
+        else:
+            self.pathSum(root.left, path_sum)
+            self.pathSum(root.right, path_sum)
+        
+        path_sum -= root.val
+                        
 
     
 # Leetcode 113
