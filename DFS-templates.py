@@ -50,30 +50,23 @@ class Solution:
 #         self.right = None
 
 class Solution:
-    
-    def recurseTree(self, node, remainingSum, pathNodes, pathsList):
-        
-        if not node:
-            return 
-        
-        # Add the current node to the path's list
-        pathNodes.append(node.val)
-        
-        # Check if the current node is a leaf and also, if it
-        # equals our remaining sum. If it does, we add the path to
-        # our list of paths
-        if remainingSum == node.val and not node.left and not node.right:
-            pathsList.append(list(pathNodes))
-        else:    
-            # Else, we will recurse on the left and the right children
-            self.recurseTree(node.left, remainingSum - node.val, pathNodes, pathsList)
-            self.recurseTree(node.right, remainingSum - node.val, pathNodes, pathsList)
-            
-        # We need to pop the node once we are done processing ALL of it's
-        # subtrees.
-        pathNodes.pop()    
-    
     def pathSum(self, root: TreeNode, sum: int) -> List[List[int]]:
-        pathsList = []
-        self.recurseTree(root, sum, [], pathsList)
-        return pathsList
+        self.ans = []
+        self.target_sum = sum
+        self.dfs(root, [])
+        return self.ans
+        
+    def dfs(self, root, path_sum):
+        if root:
+            path_sum.append(root.val)
+
+            if not root.left and not root.right:
+                if sum(path_sum) == self.target_sum:
+                    self.ans.append(list(path_sum))
+                
+
+            else:
+                self.dfs(root.left, path_sum)
+                self.dfs(root.right, path_sum)
+
+            path_sum.pop()
