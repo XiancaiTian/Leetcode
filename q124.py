@@ -17,7 +17,7 @@
 # return path is selected from 
 # (self + left, self + right, self only)
 
-# edge case, what is the tree looks like [-5]
+# edge case, what if the tree looks like [-5]
 
 class Solution:
     def maxPathSum(self, root: TreeNode) -> int:
