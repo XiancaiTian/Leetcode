@@ -70,3 +70,38 @@ class Solution:
                 self.dfs(root.right, path_sum)
 
             path_sum.pop()
+
+            
+# LEETCODE 437
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def pathSum(self, root: TreeNode, sum: int) -> int:
+        self.count = 0
+        self.fixed_target_sum = sum
+        self.dfs_visit_every_node(root)
+        return self.count
+    
+    def dfs_topsum(self, root, diff_to_sum):
+        if root:
+            diff_to_sum -= root.val
+            
+            if diff_to_sum == 0:
+                self.count += 1
+                
+            self.dfs_topsum(root.left, diff_to_sum)
+            self.dfs_topsum(root.right, diff_to_sum)
+
+            diff_to_sum += root.val
+                
+    
+    def dfs_visit_every_node(self, root):
+        if root:
+            self.dfs_topsum(root, self.fixed_target_sum)
+            self.dfs_visit_every_node(root.left)
+            self.dfs_visit_every_node(root.right)
