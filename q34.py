@@ -1,3 +1,50 @@
+# More intuitive solution
+
+class Solution:
+    def searchRange(self, nums: List[int], target: int) -> List[int]:
+        answer_lst = [-1, -1]
+        
+        # speed up a little bit
+        if not nums:
+            return answer_lst
+
+        # find lower bound
+        left = 0
+        right = len(nums)
+        
+        while left < right:
+            mid = left + (right - left)//2
+            
+            if nums[mid] >= target:
+                right = mid
+            else:
+                left = mid + 1
+
+        if left < len(nums) and left >= 0 and nums[left]==target:   
+            answer_lst[0] = left
+
+        # find upper bound
+        left = 0
+        right = len(nums)
+        
+        while left < right:
+            mid = left + (right - left)//2
+            
+            if nums[mid] > target:
+                right = mid
+            else:
+                left = mid + 1
+        if (left-1) < len(nums) and (left-1) >= 0 and nums[left-1]==target: 
+            answer_lst[1] = left-1
+            
+        
+        return answer_lst
+
+
+
+
+
+
 class Solution:
     def searchRange(self, nums: List[int], target: int) -> List[int]:
         l, r = 0, len(nums)
